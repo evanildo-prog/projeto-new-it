@@ -1,33 +1,30 @@
 package com.nildoweb.todolist.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document(collection="user")
-public class User implements Serializable {
+@Document
+public class Todo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	private String id;
-	private String name;
-	private String email;
+	private Date date;
+	private String resumo;
+	private String descrição;
 	
-	@DBRef(lazy = true)
-	private List<Todo> todos = new ArrayList<>();
-	
-	public User() {
+	public Todo() {
+		
 	}
 
-	public User(String id, String name, String email) {
+	public Todo(String id, Date date, String resumo, String descrição) {
 		super();
 		this.id = id;
-		this.name = name;
-		this.email = email;
+		this.date = date;
+		this.resumo = resumo;
+		this.descrição = descrição;
 	}
 
 	public String getId() {
@@ -38,28 +35,28 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
-	public String getEmail() {
-		return email;
+	public String getResumo() {
+		return resumo;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setResumo(String resumo) {
+		this.resumo = resumo;
 	}
 
-	public List<Todo> getTodos() {
-		return todos;
+	public String getDescrição() {
+		return descrição;
 	}
 
-	public void setTodos(List<Todo> posts) {
-		this.todos = posts;
+	public void setDescrição(String descrição) {
+		this.descrição = descrição;
 	}
 
 	@Override
@@ -78,7 +75,7 @@ public class User implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		User other = (User) obj;
+		Todo other = (Todo) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -86,4 +83,10 @@ public class User implements Serializable {
 			return false;
 		return true;
 	}
+
+	public Object getTodos() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }
